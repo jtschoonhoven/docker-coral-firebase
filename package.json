@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "docker-compose script for running coralproject/talk server",
   "scripts": {
-    "docker:build": "docker build -t jtschoonhoven/coralprojects/talk ./onbuild && npm run docker:stop && npm run docker:start",
+    "docker:build": "docker build -t jtschoonhoven/coralproject/talk ./onbuild && npm run docker:stop && npm run docker:start",
     "docker:start": "mkdir -p data/{mongo,redis} && docker-compose up -d",
     "docker:exec": "docker exec --user root --tty --interactive talk sh",
     "docker:logs": "docker container logs talk -f",
