@@ -1,0 +1,35 @@
+version: '2'
+services:
+  talk:
+    container_name: talk
+    image: jtschoonhoven/coralproject/talk
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+      - redis
+    env_file:
+      - .env
+      - ./private/.env
+    environment:
+      - TALK_MONGO_URL=mongodb://mongo/talk
+      - TALK_REDIS_URL=redis://redis
+      - TALK_ROOT_URL=${ROOT_URL}:${TALK_PORT}
+  mongo:
+    container_name: mongo
+    image: mongo:latest
+    restart: always
+    volumes:
+      - mongo:/data/db
+  redis:
+    container_name: redis
+    image: redis:latest
+    restart: always
+    volumes:
+      - redis:/data
+volumes:
+  mongo:
+    external: false
+  redis:
+    external: false
