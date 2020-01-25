@@ -11,5 +11,8 @@
     "docker:restart": "npm run docker:stop && npm run docker:start",
     "docker:rm": "docker-compose down --volumes",
     "open:admin": "open http://127.0.0.1:3000/admin"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0"
   }
 }

@@ -1,7 +1,6 @@
 const moniker = require('moniker');
 
 const Users = require('services/users');
-const authz = require('middleware/authorization');
 
 
 // When the JWT is passed to Talk, first it will be validated

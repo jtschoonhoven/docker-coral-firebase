@@ -103,7 +103,7 @@ function verify(token, options, verifyingKey, callback) {
         console.log(`Error: Failed to verify token.`);
         return callback(err);
     }
-};
+}
 
 const checkGeneralTokenBlacklist = jwt =>
     client()
@@ -166,10 +166,8 @@ JwtStrategy.JwtVerifier = (token, secretOrKey, options, callback) => {
 };
 
 function secretOrKeyProvider(request, rawJwtToken, done) {
-    let token;
     let header;
     try {
-        token = jwtDecode(rawJwtToken);
         header = jwtDecode(rawJwtToken, { header: true });
 
         // Tokens might come from Coral (static keypair) or they might come from Firebase (rotating).
