@@ -2,6 +2,7 @@
   "server": [
     "auth",
     "passport",
+    "router",
     "talk-plugin-featured-comments",
     "talk-plugin-respect"
   ],
