@@ -1,0 +1,117 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <title>CORAL FIREBASE DEMO</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- styles -->
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.3.0/firebase-ui-auth.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <a id="sign-out" class="display:none;" href="#" onClick="firebase.auth().signOut()">Sign out</a>
+    <div id="firebaseui-auth-container"></div>
+    <div id="coral-talk-stream"></div>
+
+    <!-- firebase -->
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-auth.js"></script>
+
+    <!-----------------------------------------------
+    REPLACE THIS BLOCK WITH YOUR FIREBASE SDK SNIPPET
+    ------------------------------------------------->
+
+    <script>
+        var firebaseConfig = {
+            apiKey: "ABC123...",
+            authDomain: "<PROJECT_ID>.firebaseapp.com",
+            databaseURL: "https://<PROJECT_ID>.firebaseio.com",
+            projectId: "<PROJECT_ID>",
+            storageBucket: "<PROJECT_ID>.appspot.com",
+            messagingSenderId: "123456789",
+            appId: "1:123456789:web:abc123",
+            measurementId: "G-ABC123"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
+
+    <!----------------------
+    END FIREBASE SDK SNIPPET
+    ------------------------>
+
+    <!-- vendor -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.3.0/firebase-ui-auth.js"></script>
+
+    <!-- coral -->
+    <script src="http://127.0.0.1:3000/static/embed.js"></script>
+
+    <!-- Firebase UI -->
+    <script type="text/javascript">
+        // FirebaseUI config.
+        const uiConfig = {
+            signInSuccessUrl: window.location.href,
+            signInFlow: 'popup',
+            signInOptions: [
+                // Leave the lines as is for the providers you want to offer your users.
+                firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+                firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+                firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+                firebase.auth.GithubAuthProvider.PROVIDER_ID,
+                firebase.auth.EmailAuthProvider.PROVIDER_ID,
+                firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+            ],
+            tosUrl: '#example',
+            // Privacy policy url/callback.
+            privacyPolicyUrl: () => { window.location.assign('#example') },
+            credentialHelper: firebaseui.auth.CredentialHelper.NONE,
+        };
+        const ui = new firebaseui.auth.AuthUI(firebase.auth());
+        ui.start('#firebaseui-auth-container', uiConfig);
+
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                $('#sign-out').show();
+                $('#firebaseui-auth-container').hide();
+                $('#coral-talk-stream').show();
+                // User is signed in.
+                const displayName = user.displayName;
+                const email = user.email;
+                const emailVerified = user.emailVerified;
+                const photoURL = user.photoURL;
+                const uid = user.uid;
+                const phoneNumber = user.phoneNumber;
+                const providerData = user.providerData;
+
+                // INIT CORAL
+                user.getIdToken().then(function (accessToken) {
+                    $('#coral-talk-stream').empty();
+                    Coral.Talk.render(document.getElementById('coral-talk-stream'), {
+                        talk: 'http://127.0.0.1:3000/',
+                        asset_url: window.location.href,
+                        auth_token: accessToken,
+                    });
+                });
+            } else {
+                $('#sign-out').hide();
+                $('#firebaseui-auth-container').show();
+                $('#coral-talk-stream').hide();
+            }
+        }, function (error) {
+            console.log(error);
+        });
+    </script>
+</body>
+
+</html>

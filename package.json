@@ -10,7 +10,8 @@
     "docker:stop": "docker-compose down",
     "docker:restart": "npm run docker:stop && npm run docker:start",
     "docker:rm": "docker-compose down --volumes",
-    "open:admin": "open http://127.0.0.1:3000/admin"
+    "open:admin": "open http://127.0.0.1:3000/admin",
+    "demo": "npx http-server demo/"
   },
   "devDependencies": {
     "eslint": "^6.8.0"
