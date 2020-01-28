@@ -1,5 +1,5 @@
 {
-  "name": "coral-docker",
+  "name": "docker-coral-firebase",
   "version": "0.0.0",
   "description": "docker-compose script for running coralproject/talk server",
   "scripts": {

@@ -1,4 +1,4 @@
-# coral-docker
+# docker-coral-firebase
 
 Extends the [coralproject/talk](https://github.com/coralproject/talk) commenting platform for use with Firebase.
 
@@ -87,15 +87,3 @@ Open up `demo/index.html` and paste in this snippet (look for the `REPLACE THIS 
 
 ### SSL connection errors in development
 In your `private/.env` file, set `TALK_HELMET_CONFIGURATION={"hsts": false}`.
-
-```sh
-# build custom "onbuild" coral distribution (required)
-# see https://docs.coralproject.net/talk/advanced-configuration for available build args
-npm run docker:build
-
-# start all containers
-npm run docker:start
-
-# stop all containers
-npm run docker:stop
-```
