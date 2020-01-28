@@ -12,6 +12,9 @@ services:
     env_file:
       - .env
       - ./private/.env
+    environment:
+      TALK_PORT: $PORT
+      TALK_ROOT_URL: ${ROOT_URL}:${PORT}
   mongo:
     container_name: mongo
     image: mongo:latest
