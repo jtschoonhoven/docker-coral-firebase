@@ -15,6 +15,7 @@ services:
     environment:
       TALK_PORT: $PORT
       TALK_ROOT_URL: ${ROOT_URL}:${PORT}
+      TALK_JWT_ALG: RS256
   mongo:
     container_name: mongo
     image: mongo:latest
