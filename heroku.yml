@@ -1,0 +1,9 @@
+setup:
+    addons:
+        - plan: redistogo:nano
+          as: REDIS
+        - plan: mongolab:sandbox
+          as: MONGO
+build:
+    docker:
+        web: onbuild/Dockerfile
