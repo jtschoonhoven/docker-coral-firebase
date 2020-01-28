@@ -12,10 +12,6 @@ services:
     env_file:
       - .env
       - ./private/.env
-    environment:
-      - TALK_MONGO_URL=mongodb://mongo/talk
-      - TALK_REDIS_URL=redis://redis
-      - TALK_ROOT_URL=${ROOT_URL}:${TALK_PORT}
   mongo:
     container_name: mongo
     image: mongo:latest
