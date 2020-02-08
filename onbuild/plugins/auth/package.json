@@ -2,7 +2,5 @@
     "name": "coral-docker-plugin-auth",
     "version": "0.0.0",
     "description": "Plugin for integrating Coral with Firebase",
-    "dependencies": {
-        "moniker": "0.1.2"
-    }
+    "dependencies": {}
 }

@@ -1,5 +1,3 @@
-const moniker = require('moniker');
-
 const Users = require('services/users');
 
 
@@ -7,15 +5,14 @@ const Users = require('services/users');
 // Next, Talk will attempt to locate a user in its DB using the token's sub claim,
 // if the user is not found, the tokenUserNotFound hook will be called to create the user
 async function _tokenUserNotFound({ jwt }) {
-    jwt.username = moniker.choose();
-    console.log(`creating new user for ${jwt.email} named "${jwt.username}"`);
+    console.log(`creating new user for ${jwt.email} named "${jwt.name}"`);
 
     // Since the JWT has already been validated we can pass it's claims directly to upsertExternalUser
     const user = await Users.upsertExternalUser(
         null,
         jwt.sub,
         jwt.iss,
-        jwt.username,
+        jwt.name,
     );
 
     // Persisting email address in Talk is required only if sending notifications from Talk.
