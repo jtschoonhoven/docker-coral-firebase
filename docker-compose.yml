@@ -14,7 +14,7 @@ services:
       - ./private/.env
     environment:
       TALK_PORT: $PORT
-      TALK_ROOT_URL: ${ROOT_URL}:${PORT}
+      TALK_ROOT_URL: $TALK_ROOT_URL
       TALK_JWT_ALG: RS256
   mongo:
     container_name: mongo
