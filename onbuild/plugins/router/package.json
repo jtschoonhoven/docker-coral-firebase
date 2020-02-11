@@ -1,0 +1,8 @@
+{
+    "name": "coral-docker-plugin-router",
+    "version": "0.0.0",
+    "description": "Plugin for custom API routes.",
+    "dependencies": {
+        "cors": "^2.8.5"
+    }
+}
