@@ -2,8 +2,7 @@ const { get } = require('lodash');
 const jwtDecode = require('jwt-decode');
 const jsonwebtoken = require('jsonwebtoken');
 const fetch = require('node-fetch');
-
-const authz = require('middleware/authorization');
+const cors = require('cors');
 
 const { JWT_COOKIE_NAMES, JWT_ALG, JWT_ISSUER, ROOT_URL, JWT_AUDIENCE } = require('config');
 
@@ -69,7 +68,7 @@ async function getPublicKey(rawToken) {
 // with a valid jwt token anytime a user is update needs to be passed to Talk
 // First we add the `/plugin/update-username`` route and secure it with COMMENTER level permissions
 function _router(router) {
-    router.post('/plugin/update-username', authz.needed('COMMENTER'), async (req, res, next) => {
+    router.post('/plugin/update-username', cors(), async (req, res, next) => {
         const token = req.body.token || req.query.access_token || cookieTokenExtractor(req);
         const username = req.body.username || req.query.username;
         const User = req.context.connectors.models.User;
@@ -113,7 +112,7 @@ function _router(router) {
                     new: true,
                 }
             );
-            return res.json({ user });
+            res.json({ user });
         } catch (e) {
             console.log(`Error while persisting new username: ${e.message}`);
             return next(e);
