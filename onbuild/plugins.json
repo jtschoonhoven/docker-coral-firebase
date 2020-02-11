@@ -4,9 +4,7 @@
     "passport",
     "router",
     "talk-plugin-featured-comments",
-    "talk-plugin-like",
-    "talk-plugin-sort-most-liked",
-    "talk-plugin-toxic-comments"
+    "talk-plugin-respect"
   ],
   "client": [
     "talk-plugin-author-menu",
@@ -17,13 +15,11 @@
     "talk-plugin-member-since",
     "talk-plugin-moderation-actions",
     "talk-plugin-permalink",
+    "talk-plugin-respect",
     "talk-plugin-sort-most-replied",
+    "talk-plugin-sort-most-respected",
     "talk-plugin-sort-newest",
     "talk-plugin-sort-oldest",
-    "talk-plugin-sort-most-liked",
-    "talk-plugin-viewing-options",
-    "talk-plugin-like",
-    "talk-plugin-toxic-comments",
-    "talk-plugin-comment-content"
+    "talk-plugin-viewing-options"
   ]
 }
