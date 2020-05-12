@@ -9,8 +9,8 @@
     "talk-plugin-toxic-comments"
   ],
   "client": [
+    "img",
     "talk-plugin-author-menu",
-    "talk-plugin-comment-content",
     "talk-plugin-featured-comments",
     "talk-plugin-flag-details",
     "talk-plugin-ignore-user",
